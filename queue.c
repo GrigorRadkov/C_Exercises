@@ -19,16 +19,10 @@ int isEmpty()
 }
 void push(int nNewData)
 {
-	if (isFull())
-	{
-		printf("queue is full");
-	}
-		
 	top = (top + 1) % Max_Size;
 
 	size++;
 	arr[top] = nNewData;
-
 }
 int pop()
 {
@@ -39,8 +33,8 @@ int pop()
 		return INT_MIN;
 	}
 
-	nNewData = arr[bottom];
-	top = (top + 1) % Max_Size;
+	nNewData = arr[top];
+	top = (top - 1) % Max_Size;
 	size--;
 
 	return nNewData;
@@ -66,7 +60,7 @@ int main()
 			printf("Enter data to push:\n ");
 			scanf("%d", &data);
 
-			if (isFull) {
+			if (!isFull()) {
 				push(data);
 				printf("Element added to queue.\n");
 			}
